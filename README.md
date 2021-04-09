@@ -1,9 +1,9 @@
 # Setup process
 
 - Edit project settings in composer.json
-- Move .env.example to .env and edit parameters
+- Move .env.example or .env.prod.example to .env and edit parameters to match your project
 - Check settings in docker-compose.yml
-- `composer`, `nodejs`, `npm`, `php-8.0`, `php-mbstring` and `php-xml` must be installed
-- Run `php composer.phar install`
+- Go into the php container by executing `docker-compose exec php bash`
+- Run `composer install`
 - Run `npm install`
 - Enjoy :)
