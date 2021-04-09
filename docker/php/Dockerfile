@@ -2,7 +2,7 @@ FROM php:8.0-fpm
 
 # ENV
 ENV NODE_VERSION=12.6.0
-ENV NVM_DIR=/var/www/.nvm
+ENV NVM_DIR=/root/.nvm
 ENV PATH="${NVM_DIR}/versions/node/v${NODE_VERSION}/bin/:${PATH}"
 
 # Copy composer.lock and composer.json
