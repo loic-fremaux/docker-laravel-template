@@ -1,5 +1,10 @@
 FROM php:8.0-fpm
 
+# ENV
+ENV NODE_VERSION=12.6.0
+ENV NVM_DIR=/home/www/.nvm
+ENV PATH="${NVM_DIR}/versions/node/v${NODE_VERSION}/bin/:${PATH}"
+
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
 
@@ -20,18 +25,6 @@ RUN apt-get update && apt-get install -y \
     unzip \
     git \
     curl
-
-# Get nodejs
-ENV NODE_VERSION=12.6.0
-RUN apt install -y curl
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-ENV NVM_DIR=/root/.nvm
-RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
-ENV PATH="/root/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
-RUN node --version
-RUN npm --version
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -54,6 +47,14 @@ COPY --chown=www:www . /var/www
 
 # Change current user to www
 USER www
+
+# Get nodejs
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
+RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
+RUN node --version
+RUN npm --version
 
 # Expose port 9000 and start php server
 EXPOSE 9000
