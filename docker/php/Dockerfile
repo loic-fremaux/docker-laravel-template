@@ -6,9 +6,6 @@ COPY composer.lock composer.json /var/www/
 # Set working directory
 WORKDIR /var/www
 
-# Get version 13 of nodejs
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
-
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -22,7 +19,7 @@ RUN apt-get update && apt-get install -y \
     vim \
     unzip \
     git \
-    curl
+    cur
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -45,6 +42,9 @@ COPY --chown=www:www . /var/www
 
 # Change current user to www
 USER www
+
+# Get version 13 of nodejs
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 
 # Expose port 9000 and start php server
 EXPOSE 9000
