@@ -6,4 +6,5 @@
 - Go into the php container with `docker-compose exec php bash`
 - Run `composer install`
 - Run `npm install`
+- Run either `npm run dev` or `npm run prod`
 - Enjoy :)
