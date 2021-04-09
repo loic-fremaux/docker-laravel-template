@@ -16,7 +16,7 @@ services:
       - ./:/var/www
       - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
-      - app-network
+      - app_network
 
   # Nginx Service
   nginx:
@@ -29,7 +29,8 @@ services:
       - ./:/var/www
       - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     networks:
-      - app-network
+      - app_network
+      - proxy_reverse
 
   # Mariadb Service
   database:
@@ -45,7 +46,7 @@ services:
       - ./storage-db:/var/lib/mysql/
       - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
     networks:
-      - app-network
+      - app_network
 
   # Redis service
   redis:
@@ -55,9 +56,12 @@ services:
     env_file:
       - .env
     networks:
-      - app-network
+      - app_network
 
 # Docker Networks
 networks:
-  app-network:
+  app_network:
     driver: bridge
+  proxy_reverse:
+    external:
+      name: proxy_reverse
