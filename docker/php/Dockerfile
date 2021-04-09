@@ -6,6 +6,9 @@ COPY composer.lock composer.json /var/www/
 # Set working directory
 WORKDIR /var/www
 
+# Get nodejs
+RUN curl -sL https://deb.nodesource.com/setup_14.x  | bash -
+
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -19,7 +22,8 @@ RUN apt-get update && apt-get install -y \
     vim \
     unzip \
     git \
-    curl
+    curl \
+    nodejs
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
@@ -42,17 +46,6 @@ COPY --chown=www:www . /var/www
 
 # Change current user to www
 USER www
-
-# Get nodejs
-ENV NODE_VERSION=12.6.0
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
-ENV NVM_DIR=/home/www
-RUN . "$NVM_DIR/nvm.sh" && nvm install ${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" && nvm use v${NODE_VERSION}
-RUN . "$NVM_DIR/nvm.sh" && nvm alias default v${NODE_VERSION}
-ENV PATH="/home/www/.nvm/versions/node/v${NODE_VERSION}/bin/:${PATH}"
-RUN node --version
-RUN npm --version
 
 # Expose port 9000 and start php server
 EXPOSE 9000
