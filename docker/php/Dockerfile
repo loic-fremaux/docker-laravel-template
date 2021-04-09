@@ -6,9 +6,6 @@ COPY composer.lock composer.json /var/www/
 # Set working directory
 WORKDIR /var/www
 
-# Get version 13 of nodejs
-RUN curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
-
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -25,6 +22,9 @@ RUN apt-get update && apt-get install -y \
     curl \
     nodejs \
     npm
+
+# Upgrade nodejs
+RUN npm install -g n
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
