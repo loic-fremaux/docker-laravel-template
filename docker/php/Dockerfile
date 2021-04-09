@@ -21,6 +21,14 @@ RUN apt-get update && apt-get install -y \
     git \
     curl
 
+# Get nodejs
+RUN apt-get install -y git-core curl build-essential openssl libssl-dev \
+ && git clone https://github.com/nodejs/node.git \
+ && cd node \
+ && ./configure \
+ && make \
+ && sudo make install
+
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -42,14 +50,6 @@ COPY --chown=www:www . /var/www
 
 # Change current user to www
 USER www
-
-# Get nodejs
-RUN apt-get install -y git-core curl build-essential openssl libssl-dev \
- && git clone https://github.com/nodejs/node.git \
- && cd node \
- && ./configure \
- && make \
- && sudo make install
 
 # Expose port 9000 and start php server
 EXPOSE 9000
