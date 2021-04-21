@@ -1,6 +1,7 @@
-# Setup process
+# Laravel docker template
+## Setup process
 
-- Edit project settings in composer.json
+- Verify settings in composer.json like the project name and description
 - Move .env.example or .env.prod.example to .env and edit parameters to match your project
 - Make sure permission are well-defined for 1000:1000 (`sudo chown 1000:1000 /path/ -R`)
 - Start containers with `docker-compose up -d`
@@ -10,3 +11,11 @@
 - Run either `npm run dev` or `npm run prod`
 - Generate application secret key with `php artisan key:generate`
 - Enjoy :)
+
+## Additional features
+
+1. Add bootstrap
+
+- `composer require laravel/ui`
+- `php artisan ui bootstrap`
+- `npm install && npm run dev`
