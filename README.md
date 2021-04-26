@@ -8,14 +8,14 @@
 - Go into the php container with `docker-compose exec php bash`
 - Install libs with `composer install`
 - Setup nodejs with `npm install`
-- Run either `npm run dev` or `npm run prod`
 - Generate application secret key with `php artisan key:generate`
 - Enjoy :)
 
-## Additional features
+## Utilisation vitejs in laravel
 
-1. Add bootstrap
+- Start container dev `docker-compose up`
+- check the variable `VITE_DEV` to 1 for the dev in .env
+- For images creates a symbolic link in the public folder `ln -s ../assets/ assets`
+- Dependency install `vitejs`, `react vanilla` and `sass`
+- Enjoy :)
 
-- `composer require laravel/ui`
-- `php artisan ui bootstrap`
-- `npm install && npm run dev`
