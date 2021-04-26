@@ -60,6 +60,20 @@ services:
     networks:
       - app_network
 
+  # Node
+  node:
+    build:
+      context: ./docker/node
+    container_name: ${APP_SLUG}_node
+    command: npm run dev
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    ports:
+      - 3000:3000
+    networks:
+      - app_network
+
 # Docker Networks
 networks:
   app_network:
