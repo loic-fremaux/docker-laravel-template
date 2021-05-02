@@ -1,5 +1,5 @@
 @extends('layout')
 
 @section('content')
-<h1>coucou toi</h1>
-@endsection()
+<h1>Hi there !</h1>
+@endsection
