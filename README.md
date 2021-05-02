@@ -11,11 +11,15 @@
 - Generate application secret key with `php artisan key:generate`
 - Enjoy :)
 
-## Utilisation vitejs in laravel
+## Use vitejs
 
 - Start container dev `docker-compose up`
-- check the variable `VITE_DEV` to 1 for the dev in .env
-- For images creates a symbolic link in the public folder `ln -s ../assets/ assets`
-- Dependency install `vitejs`, `react vanilla` and `sass`
-- Enjoy :)
+- Create a symbolic link in the public folder `ln -s ../assets/ assets`
 
+## Additional features
+
+1. Add bootstrap
+
+- `composer require laravel/ui`
+- `php artisan ui bootstrap`
+- `npm install && npm run dev`
