@@ -2,7 +2,7 @@ import {defineConfig} from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import {resolve} from 'path'
 
-//on crée notre plugion pour refresh blade
+// Blade refresh plugin
 const bladeRefreshPlugin = {
     name: 'twig-refresh',
     configureServer ({watcher, ws}){
