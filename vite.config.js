@@ -6,7 +6,7 @@ import {resolve} from 'path'
 const bladeRefreshPlugin = {
     name: 'twig-refresh',
     configureServer ({watcher, ws}){
-        watcher.add(resolve('resources/views/*.blade.*'))
+        watcher.add(resolve('resources/**/*.blade.php'))
         watcher.on('change', function (path){
             if (path.endsWith('.blade.php')){
                 ws.send({
