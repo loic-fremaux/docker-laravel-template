@@ -34,6 +34,8 @@ services:
   # Mariadb Service
   database:
     image: mariadb:latest
+    ports:
+      - "3306:3306"
     container_name: ${APP_SLUG}_database
     restart: unless-stopped
     environment:
