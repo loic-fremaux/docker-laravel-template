@@ -34,8 +34,12 @@ services:
   # Mariadb Service
   database:
     image: mariadb:latest
+    ports:
+      - "3306:3306"
     container_name: ${APP_SLUG}_database
     restart: unless-stopped
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USERNAME}
@@ -70,6 +74,17 @@ services:
       - database
     environment:
       PMA_HOST: ${DB_HOST}
+    networks:
+      - app_network
+
+  #Mailhog
+  mailhog:
+    image: mailhog/mailhog
+    restart: unless-stopped
+    container_name: ${APP_SLUG}_mailhog
+    ports:
+      - '1025:1025'
+      - '8025:8025'
     networks:
       - app_network
 
