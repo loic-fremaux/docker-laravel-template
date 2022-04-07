@@ -1,4 +1,4 @@
-FROM php:8.0-fpm
+FROM php:8.1-fpm
 
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
@@ -7,7 +7,7 @@ COPY composer.lock composer.json /var/www/
 WORKDIR /var/www
 
 # Get nodejs
-RUN curl -sL https://deb.nodesource.com/setup_14.x  | bash -
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
