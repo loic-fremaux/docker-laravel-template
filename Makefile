@@ -17,7 +17,7 @@ start:	## project installation
 build:	## Installation of the production project
 	$(dc) up -d
 	$(de) php bash -c 'composer install'
-	$(de) php bash -c 'npm install && npm run build'
+	$(de) php bash -c 'npm install && npm run prod'
 	$(de) php bash -c 'php artisan key:generate'
 	$(de) php bash -c 'php artisan migrate'
 
