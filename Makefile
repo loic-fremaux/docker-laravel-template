@@ -35,6 +35,23 @@ delete:	## delete container
 	$(dc) kill
 	$(dc) rm
 
+## —— Tools 🛠️️ ———————————————————————————————————————————————————————————————
+.PHONY: cs
+cs:  ## code style check
+	./vendor/bin/pint -v --test
+	npx prettier --check 'resources/**/*.+(js|json|scss|sass|css|vue)' '.prettierrc.json' 'composer.json' 'package.json' 'pint.json'
+
+.PHONY: fix
+fix:  ## code style fix
+	./vendor/bin/pint
+	npx prettier --write 'resources/**/*.+(js|json|scss|sass|css|vue)' '.prettierrc.json' 'composer.json' 'package.json' 'pint.json'
+
+.PHONY: phpstan
+phpstan:  ## phpstan
+	vendor/bin/phpstan analyse --memory-limit=2G
+
+.PHONY: test
+test: cs phpstan  ## test this project
 
 ## —— Others 🛠️️ ———————————————————————————————————————————————————————————————
 help: ## listing command
