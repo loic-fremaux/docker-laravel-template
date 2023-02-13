@@ -15,5 +15,8 @@
         "lodash": "^4.17.21",
         "postcss": "^8.4.5",
         "prettier": "2.7.1"
+    },
+    "dependencies": {
+        "npm": "^9.4.2"
     }
 }
